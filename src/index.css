@@ -1,0 +1,151 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  
+  /* Dark Mode Defaults (Monochrome / Dark Gray Theme) */
+  --bg-primary: #171717;  /* Neutral Dark */
+  --bg-secondary: #262626; /* Neutral Dark Gray */
+  --text-primary: #e5e5e5; /* Neutral Light Gray */
+  --text-secondary: #a3a3a3; /* Neutral Mid Gray */
+  --accent-color: #d4d4d8; /* Light Gray Accent */
+  --border-color: #404040; /* Dark Gray Border */
+  --card-bg: #262626;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--accent-color);
+  text-decoration: inherit;
+}
+a:hover {
+  color: #e4e4e7; /* Light Gray */
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-primary); /* Ensure body takes the var */
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+button:hover {
+  border-color: var(--accent-color);
+  background-color: #404040; /* Dark Gray */
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Light Mode Defaults (Clean Gray) */
+    --bg-primary: #f4f4f5; /* Zinc 100 */
+    --bg-secondary: #ffffff;
+    --text-primary: #18181b; /* Zinc 900 */
+    --text-secondary: #52525b; /* Zinc 600 */
+    --accent-color: #3f3f46; /* Zinc 700 - Dark Gray Accent */
+    --border-color: #d4d4d8; /* Zinc 300 */
+    --card-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+  }
+  a:hover {
+    color: #18181b; /* Almost Black */
+  }
+  button {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+  button:hover {
+    background-color: #e4e4e7; /* Zinc 200 */
+  }
+}
+
+.step-node {
+  margin-top: 10px;
+}
+
+/* The Card Look */
+.step-content {
+  background: var(--card-bg);
+  color: var(--text-primary);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* --- Status Colors (Theme Adapted) --- */
+
+/* To Do: Neutral Gray */
+.status-todo {
+  background-color: var(--card-bg);
+  border-left: 5px solid var(--border-color);
+}
+
+/* In Progress: Muted Blue */
+.status-inprogress {
+  background-color: var(--card-bg);
+  border-left: 5px solid #60a5fa; /* Soft Blue */
+}
+
+/* Completed: Muted Green */
+.status-completed {
+  background-color: var(--card-bg);
+  border-left: 5px solid #4ade80; /* Soft Green */
+}
+
+/* Comment: Subtle */
+.status-comment {
+  background-color: var(--card-bg);
+  border-left: 5px solid var(--border-color);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* A nice interaction detail */
+.step-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--shadow-color);
+  border-color: var(--accent-color);
+}
+
+/* The Hierarchy / Tree Lines */
+.step-children {
+  margin-left: 20px;
+  padding-left: 15px;
+  border-left: 2px solid var(--border-color);
+  margin-top: 10px;
+}
