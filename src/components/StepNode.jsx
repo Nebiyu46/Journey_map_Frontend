@@ -1,7 +1,7 @@
 // src/components/StepNode.jsx
 import { useState } from 'react'
 
-export default function StepNode({ step }) {
+export default function StepNode({ step, statusChangefunc }) {
   // 1. Initialize state. Default to false (collapsed) or true (expanded).
   const [isOpen, setIsOpen] = useState(false) 
 
@@ -13,35 +13,46 @@ export default function StepNode({ step }) {
   // Check if this step actually has children (to decide if we show a toggle arrow)
   const hasChildren = step.children && step.children.length > 0
 
-  const statusMap = {
-    "To Do": "status-todo",
-    "In Progress": "status-inprogress",
-    "Completed": "status-completed",
-    "Complete": "status-completed",
-    "Comment": "status-comment" // The new "informational" style
-  }
-  const statusClass = statusMap[step.status] || "status-todo"
 
   return (
     <div className="step-node">
       
       {/* 3. Add onClick to the content card */}
       <div 
-        className={`step-content ${statusClass}`}
+        className={`step-content status-${step.status}`}
         onClick={toggleOpen}
         style={{ cursor: hasChildren ? 'pointer' : 'default' }} // Visual cue
       >
-         <h4>
-           {/* Optional: Add a visual arrow indicator */}
-           {hasChildren && (
-             <span style={{ marginRight: '10px' }}>
-               {isOpen ? '▼' : '▶'}
+         <h4 style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+           {/* Wrap left-side content in a span to keep them together */}
+           <span>
+             {hasChildren && (
+               <span style={{ marginRight: '10px' }}>
+                 {isOpen ? '▼' : '▶'}
+               </span>
+             )}
+             {step.title} 
+             <span style={{fontSize: '0.8em', color: 'gray', marginLeft: '10px'}}>
+               ({step.status})
              </span>
-           )}
-           {step.title} 
-           <span style={{fontSize: '0.8em', color: 'gray', marginLeft: '10px'}}>
-             ({step.status})
            </span>
+
+            { step.status !== "Comment" && (
+              <button style={{marginRight: '10px'}} onClick={(e) => {e.stopPropagation(); statusChangefunc(step.id);}}>
+            {(() => {
+              switch (step.status) {
+                case "To_Do":
+                  return "Start"
+                case "In_Progress":
+                  return "Check"
+                case "Completed":
+                  return "Reset"
+                default:
+                  return "Start"
+              }
+            })()}
+           </button>
+           )}
          </h4>
          <p>{step.details}</p>
       </div>
@@ -50,7 +61,7 @@ export default function StepNode({ step }) {
       {isOpen && (
         <div className="step-children">
           {step.children.map((childStep) => (
-            <StepNode key={childStep.id} step={childStep} />
+            <StepNode key={childStep.id} step={childStep} statusChangefunc={statusChangefunc} />
           ))}
         </div>
       )}

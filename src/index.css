@@ -110,25 +110,25 @@ button:focus-visible {
 /* --- Status Colors (Theme Adapted) --- */
 
 /* To Do: Neutral Gray */
-.status-todo {
+.status-To_Do {
   background-color: var(--card-bg);
   border-left: 5px solid var(--border-color);
 }
 
 /* In Progress: Muted Blue */
-.status-inprogress {
+.status-In_Progress {
   background-color: var(--card-bg);
   border-left: 5px solid #60a5fa; /* Soft Blue */
 }
 
 /* Completed: Muted Green */
-.status-completed {
+.status-Completed {
   background-color: var(--card-bg);
   border-left: 5px solid #4ade80; /* Soft Green */
 }
 
 /* Comment: Subtle */
-.status-comment {
+.status-Comment {
   background-color: var(--card-bg);
   border-left: 5px solid var(--border-color);
   color: var(--text-secondary);
