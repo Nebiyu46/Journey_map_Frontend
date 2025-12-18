@@ -11,7 +11,11 @@ export const mockBlueprint = {
         id: "ph_1",
         title: "Phase 1: Application & Course Selection",
         status: "In_Progress",
+        hasFeedback: true,
+        userRating: 1,
+        userFeedback: "This is a test feedback",
         details: "Goal: Submit a compliant study plan and pass the interviews.",
+        PersonalComment: "This is a test personal comment",
         children: [
           {
             id: "p1_1",
